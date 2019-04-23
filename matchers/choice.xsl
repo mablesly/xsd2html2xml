@@ -21,20 +21,16 @@
 			<xsl:with-param name="reference">choice</xsl:with-param>
 		</xsl:call-template>
 
+        <!--
         <xsl:message>
 		    choice recognised
-		    root-document: <xsl:value-of select="$root-document" />
-		    root-path: <xsl:value-of select="$root-path" />
-		    choice: <xsl:value-of select="$choice" />
-		    xpath: <xsl:value-of select="$xpath" />
-		    id: <xsl:value-of select="generate-id()" />
-		    current: <xsl:value-of select="." />
-		    parent: <xsl:value-of select=".." />
-		</xsl:message>
+		    begin<xsl:copy-of select="." />end
+	    </xsl:message>
+        -->
 
         <xsl:element name="select">
-            blaat
-            <xsl:for-each select="./element">
+            <xsl:for-each select="./xs:element">
+
                 <xsl:call-template name="add_options" />
             </xsl:for-each>
         </xsl:element>
@@ -51,18 +47,7 @@
 			</xsl:call-template>
 		</xsl:if>
 
-        <xsl:if test="$choice = 'true'">
-            <xsl:message>
-		        choice is true
-		    </xsl:message>
-        </xsl:if>
-
-        <xsl:if test="$choice = ''">
-            <xsl:message>
-		        choice is empty
-		    </xsl:message>
-        </xsl:if>
-
+        <!--
 		<xsl:apply-templates select="xs:element|xs:group|xs:choice|xs:sequence|xs:any">
 			<xsl:with-param name="root-document" select="$root-document" />
 			<xsl:with-param name="root-path" select="$root-path" />
@@ -75,6 +60,7 @@
 			<xsl:with-param name="disabled" select="$disabled" />
 			<xsl:with-param name="xpath" select="$xpath" />
 		</xsl:apply-templates>
+		-->
 	</xsl:template>
 
 </xsl:stylesheet>

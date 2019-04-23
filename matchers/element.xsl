@@ -9,11 +9,13 @@
 	<!-- handle elements with type attribute add the options to the select -->
 	<xsl:template match="xs:element" name="add_options">
 
+        <!--
 	    <xsl:message>
             element called.
             begin<xsl:copy-of select="." />end
             begin<xsl:value-of select="@name" />end
 	    </xsl:message>
+        -->
 
         <xsl:element name="option">
             <xsl:attribute name="value"><xsl:value-of select="@name" /></xsl:attribute>
