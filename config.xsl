@@ -14,7 +14,7 @@
 
 	<!-- if an XSD supports multiple root elements, specify the position of the one that should be used to generate the form from here -->
 	<!-- defaults to 1 -->
-	<xsl:param name="config-root">2</xsl:param>
+	<xsl:param name="config-root">1</xsl:param>
 
 	<!-- choose a JavaScript function to be called when the form is submitted.
 	it should accept a string argument containing the xml or html -->
