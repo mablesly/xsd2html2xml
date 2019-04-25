@@ -7,8 +7,7 @@
 
 
 	<!-- handle elements with type attribute add the options to the select -->
-	<xsl:template match="xs:element" name="add_options">
-
+	<xsl:template match="xs:element" name="add_p3sc_select">
         <!--
 	    <xsl:message>
             element called.
@@ -17,9 +16,16 @@
 	    </xsl:message>
         -->
 
-        <xsl:element name="option">
-            <xsl:attribute name="value"><xsl:value-of select="@name" /></xsl:attribute>
-			<xsl:value-of select="@name" />
+        <xsl:element name="select">
+			<xsl:attribute name="onchange">
+				<xsl:text>this.childNodes.forEach(function(o) { if (o.nodeType == Node.ELEMENT_NODE) o.removeAttribute("selected"); }); this.children[this.selectedIndex].setAttribute("selected","selected");</xsl:text>
+			</xsl:attribute>
+			<xsl:for-each select="./xs:element">
+                <xsl:element name="option">
+                    <xsl:attribute name="value"><xsl:value-of select="@name" /></xsl:attribute>
+			        <xsl:value-of select="@name" />
+                </xsl:element>
+            </xsl:for-each>
         </xsl:element>
 	</xsl:template>
 </xsl:stylesheet>

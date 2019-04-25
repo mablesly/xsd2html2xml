@@ -28,11 +28,24 @@
 	    </xsl:message>
         -->
 
-        <xsl:element name="select">
-            <xsl:for-each select="./xs:element">
+        <xsl:element name="label">
+			<!-- metadata required for compiling the xml when the form is submitted -->
+<!--			<xsl:attribute name="data-xsd2html2xml-namespace">
+				<xsl:value-of select="$local-namespace" />
+			</xsl:attribute>
+			<xsl:attribute name="data-xsd2html2xml-type">
+				<xsl:value-of select="$node-type" />
+			</xsl:attribute>
+			<xsl:attribute name="data-xsd2html2xml-name">
+				<xsl:value-of select="concat($local-namespace-prefix, @name)" />
+			</xsl:attribute>-->
+			<xsl:attribute name="data-xsd2html2xml-xpath">
+				<xsl:value-of select="$xpath" />
+			</xsl:attribute>
 
-                <xsl:call-template name="add_options" />
-            </xsl:for-each>
+            <xsl:call-template name="add_p3sc_select" />
+
+
         </xsl:element>
 
 		<!-- add radio button if $choice is specified -->
