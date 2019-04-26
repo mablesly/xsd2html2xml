@@ -2,17 +2,17 @@
 <xsl:stylesheet version="3.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
-	
+
 	<xsl:template name="add-xml-generators">
 		<xsl:element name="script">
 			<xsl:attribute name="type">text/javascript</xsl:attribute>
 			<xsl:text disable-output-escaping="yes">
 				/* XML GENERATORS */
-				
+
 				var htmlToXML = function(root) {
 					var namespaces = [];
 				    var prefixes = [];
-				    
+
 				    document.querySelectorAll("[data-xsd2html2xml-namespace]:not([data-xsd2html2xml-namespace=''])").forEach(function(o) {
 				    	if (namespaces.indexOf(
 				    		o.getAttribute("data-xsd2html2xml-namespace")
@@ -20,7 +20,7 @@
 					    	namespaces.push(
 					    		o.getAttribute("data-xsd2html2xml-namespace")
 					    	);
-					    	
+
 					    	prefixes.push(
 					    		o.getAttribute("data-xsd2html2xml-name").substring(
 				    				0, o.getAttribute("data-xsd2html2xml-name").indexOf(":")
@@ -28,9 +28,9 @@
 				    		);
 				    	}
 				    });
-				    
+
 				    var namespaceString = "";
-				    
+
 				    namespaces.forEach(function(o,i) {
 				    	namespaceString = namespaceString.concat(
 				    		"xmlns".concat(
@@ -40,10 +40,10 @@
 				    		)
 				    	)
 				    });
-				    
+
 				    return String.fromCharCode(60).concat("?xml version=\"1.0\"?").concat(String.fromCharCode(62)).concat(getXML(root, false, namespaceString.trim()));
 				};
-				
+
 				var getXML = function(parent, attributesOnly, namespaceString) {
 				    var xml = "";
 				    var children = [].slice.call(parent.children);
@@ -51,7 +51,7 @@
 				        if (!o.hasAttribute("hidden")) {
 				            switch (o.getAttribute("data-xsd2html2xml-type")) {
 				                case "element":
-				                    if (!attributesOnly) xml = xml.concat(String.fromCharCode(60)).concat(o.getAttribute("data-xsd2html2xml-name")).concat(getXML(o, true)).concat(String.fromCharCode(62)).concat(function() {
+				                    if (!attributesOnly && (o.nodeName.toLowerCase() != "option" || (o.nodeName.toLowerCase() === "option" && o.getAttribute("selected")))) xml = xml.concat(String.fromCharCode(60)).concat(o.getAttribute("data-xsd2html2xml-name")).concat(getXML(o, true)).concat(String.fromCharCode(62)).concat(function() {
 				                        if (o.nodeName.toLowerCase() === "label") {
 				                            return getContent(o);
 				                        } else return getXML(o)
@@ -73,13 +73,13 @@
 				                    if (!attributesOnly) {
 				                    	if (!o.getAttribute("data-xsd2html2xml-choice"))
 				                    		xml = xml.concat(getXML(o));
-				                    		
+
 				                    	if (o.getAttribute("data-xsd2html2xml-choice")) {
 				                    		var node = o.previousElementSibling;
 				                    		while (node.hasAttribute("data-xsd2html2xml-choice")) {
 				                    			node = node.previousElementSibling;
 				                    		};
-				                    		
+
 				                    		if (node.getElementsByTagName("input")[0].checked)
 				                    			xml = xml.concat(getXML(o));
 				                    	};
@@ -88,14 +88,14 @@
 				            }
 				        }
 				    });
-				    
+
 				    if (namespaceString) {
 				    	xml = xml.substring(0, xml.indexOf(String.fromCharCode(62))).concat(" ").concat(namespaceString).concat(xml.substring(xml.indexOf(String.fromCharCode(62))));
 				    }
-				    
+
 				    return xml;
 				};
-				
+
 				var getContent = function(node) {
 				    if (node.getElementsByTagName("input").length != 0) {
 				        switch (node.getElementsByTagName("input")[0].getAttribute("type").toLowerCase()) {
@@ -126,7 +126,7 @@
 				    }
 				}
 			</xsl:text>
-		</xsl:element>	
+		</xsl:element>
 	</xsl:template>
-	
+
 </xsl:stylesheet>
