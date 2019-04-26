@@ -51,7 +51,7 @@
 				        if (!o.hasAttribute("hidden")) {
 				            switch (o.getAttribute("data-xsd2html2xml-type")) {
 				                case "element":
-				                    if (!attributesOnly && (o.nodeName.toLowerCase() != "option" || (o.nodeName.toLowerCase() === "option" && o.getAttribute("selected")))) xml = xml.concat(String.fromCharCode(60)).concat(o.getAttribute("data-xsd2html2xml-name")).concat(getXML(o, true)).concat(String.fromCharCode(62)).concat(function() {
+				                    if (!attributesOnly &amp;&amp; (o.nodeName.toLowerCase() != "option" || (o.nodeName.toLowerCase() === "option" &amp;&amp; o.getAttribute("selected")))) xml = xml.concat(String.fromCharCode(60)).concat(o.getAttribute("data-xsd2html2xml-name")).concat(getXML(o, true)).concat(String.fromCharCode(62)).concat(function() {
 				                        if (o.nodeName.toLowerCase() === "label") {
 				                            return getContent(o);
 				                        } else return getXML(o)
