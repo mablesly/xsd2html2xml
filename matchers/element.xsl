@@ -22,7 +22,10 @@
 			</xsl:attribute>
 			<xsl:for-each select="./xs:element">
                 <xsl:element name="option">
+                    <xsl:attribute name="data-xsd2html2xml-type">element</xsl:attribute>
+                    <xsl:attribute name="data-xsd2html2xml-name"><xsl:value-of select="@name" /></xsl:attribute>
                     <xsl:attribute name="value"><xsl:value-of select="@name" /></xsl:attribute>
+
 			        <xsl:value-of select="@name" />
                 </xsl:element>
             </xsl:for-each>
