@@ -28,9 +28,9 @@
 	    </xsl:message>
         -->
 
-        <xsl:element name="label">
-			<!-- metadata required for compiling the xml when the form is submitted -->
-<!--			<xsl:attribute name="data-xsd2html2xml-namespace">
+        <!-- <xsl:element name="label">
+			 metadata required for compiling the xml when the form is submitted
+    			<xsl:attribute name="data-xsd2html2xml-namespace">
 				<xsl:value-of select="$local-namespace" />
 			</xsl:attribute>
 			<xsl:attribute name="data-xsd2html2xml-type">
@@ -39,14 +39,14 @@
 			<xsl:attribute name="data-xsd2html2xml-name">
 				<xsl:value-of select="concat($local-namespace-prefix, @name)" />
 			</xsl:attribute>-->
-			<xsl:attribute name="data-xsd2html2xml-xpath">
+			<!--><xsl:attribute name="data-xsd2html2xml-xpath">
 				<xsl:value-of select="$xpath" />
-			</xsl:attribute>
+			</xsl:attribute>-->
 
             <xsl:call-template name="add_p3sc_select" />
 
 
-        </xsl:element>
+        <!--</xsl:element>-->
 
 		<!-- add radio button if $choice is specified -->
 		<xsl:if test="not($choice = '') and not($choice = 'true')">
