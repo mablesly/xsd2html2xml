@@ -182,17 +182,6 @@
 				</xsl:call-template>
 			</xsl:variable>
 			
-			<!-- minlength is used later to determine optional text fields -->
-			<xsl:variable name="min-length">
-				<xsl:call-template name="attr-value">
-					<xsl:with-param name="attr"><xsl:value-of select="$root-namespaces//root-namespace[@namespace = 'http://www.w3.org/2001/XMLSchema']/@prefix" />minLength</xsl:with-param>
-					<xsl:with-param name="root-document" select="$root-document" />
-					<xsl:with-param name="root-path" select="$root-path" />
-					<xsl:with-param name="root-namespaces" select="$root-namespaces" />
-					<xsl:with-param name="namespace-documents" select="$namespace-documents" />
-				</xsl:call-template>
-			</xsl:variable>
-			
 			<!-- enumerations are rendered as select elements -->
 			<xsl:variable name="choice">
 				<xsl:call-template name="attr-value">
@@ -245,7 +234,7 @@
 			
 			<xsl:choose>
 				<!-- enumerations are rendered as select elements -->
-				<xsl:when test="not($choice='') or $type='idref' or $type='idrefs'">
+				<xsl:when test="not($choice='')">
 					<xsl:call-template name="generate-select">
 						<xsl:with-param name="root-document" select="$root-document" />
 						<xsl:with-param name="root-path" select="$root-path" />
@@ -254,14 +243,7 @@
 						<xsl:with-param name="namespace-documents" select="$namespace-documents" />
 						
 						<xsl:with-param name="description" select="$description" />
-						<xsl:with-param name="type" select="$type" />
 						<xsl:with-param name="attribute" select="$attribute" />
-						<xsl:with-param name="multiple">
-							<xsl:choose>
-								<xsl:when test="$type='idrefs'">true</xsl:when>
-								<xsl:otherwise>false</xsl:otherwise>
-							</xsl:choose>
-						</xsl:with-param>
 						<xsl:with-param name="disabled" select="$disabled" />
 					</xsl:call-template>
 				</xsl:when>
@@ -275,7 +257,6 @@
 						<xsl:with-param name="namespace-documents" select="$namespace-documents" />
 						
 						<xsl:with-param name="description" select="$description" />
-						<xsl:with-param name="min-length" select="$min-length" />
 						<xsl:with-param name="whitespace" select="$whitespace" />
 						<xsl:with-param name="attribute" select="$attribute" />
 						<xsl:with-param name="disabled" select="$disabled" />
@@ -292,7 +273,6 @@
 						
 						<xsl:with-param name="description" select="$description" />
 						<xsl:with-param name="pattern" select="$pattern" />
-						<xsl:with-param name="min-length" select="$min-length" />
 						<xsl:with-param name="whitespace" select="$whitespace" />
 						<xsl:with-param name="type" select="$type" />
 						<xsl:with-param name="attribute" select="$attribute" />
