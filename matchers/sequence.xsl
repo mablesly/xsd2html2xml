@@ -15,8 +15,6 @@
 		<xsl:param name="choice" /> <!-- handles xs:choice elements and descendants; contains a unique ID for radio buttons of the same group to share -->
 		<xsl:param name="xpath" /> <!-- contains an XPath query relative to the current node, to be used with xml document -->
 		<xsl:param name="disabled">false</xsl:param> <!-- is used to disable elements that are copies for additional occurrences -->
-		<xsl:param name="min-occurs" select="@minOccurs" /> <!-- contains @minOccurs attribute (for referenced elements) -->
-		<xsl:param name="max-occurs" select="@maxOccurs" /> <!-- contains @maxOccurs attribute (for referenced elements) -->
 
 		<xsl:call-template name="log">
 			<xsl:with-param name="reference">xs:sequence</xsl:with-param>
@@ -41,9 +39,6 @@
 
 			<xsl:with-param name="namespace-documents" select="$namespace-documents" />
 			<xsl:with-param name="namespace-prefix" select="$namespace-prefix" />
-
-			<xsl:with-param name="min-occurs" select="$min-occurs" />
-			<xsl:with-param name="max-occurs" select="$max-occurs" />
 
 			<xsl:with-param name="choice">
 				<xsl:if test="not($choice = '')">true</xsl:if>
